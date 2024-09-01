@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a Comment</title>
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/styles_subscribepage.css' %}">
+</head>
+<body>
+    <header class="logo-header">
+        <div class="logo-container">
+            <a href="{% url 'landpage' %}">
+                <img src="{% static 'img/mococo_.png' %}" alt="Logo" class="logo">
+            </a>
+        </div>
+    </header>
+
+    <!-- Top Bar to navigate web -->
+    <div class="TopBar">
+        <ul id="TopBarList">
+            <li><a href="{% url 'landpage' %}">Me</a></li>
+            <li><a href="{% url 'blogpage' %}">Blog</a></li>
+            <li><a href="{% url 'resumepage' %}">Resume</a></li>
+            <li><a href="{% url 'aboutmepage' %}">About me</a></li>
+        </ul>
+    </div>
+
+    <!-- Main page content -->
+    <div class="wrapper">
+        <h1>Subscribe!!!</h1>
+        <section>
+            <form action="{% url 'subscribe' %}" method="post">
+                <div class="row d-flex justify-content-center">
+                {% csrf_token %}
+
+                    <div class="col-auto">
+                        <p class="pt-2">Pls subscribe to my blog...</p>
+                    </div>
+
+                    <div class="col-auto">
+                        <input id="name" name="name" class="form-control" placeholder="Your Name"/>
+                    </div>
+
+                    <div class="col-auto">
+                        <input id="email" name="email" type="email" class="form-control" placeholder="Email address"/>
+                    </div>
+
+                    <div class="col-auto">
+                        <select id="sub_plan" name="sub_plan" class="form-control">
+                            <option value="For each post">For each post</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <div class="col-auto">
+                        <button type="submit" class="btn btncolor">
+                            <i class="fa fa-arrow-circle-right fa-lg"> Send </i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+
+
+    <!-- Page footer -->
+    <footer>
+        <a href="https://www.linkedin.com/in/joseph-núñez-solano-257623241" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'img/linkedin-128.png' %}" alt="LinkedIn Logo" class="linkedin_logo">
+        </a>
+        <a href="https://github.com/Joesviel" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'img/github-8-128.png' %}" alt="GitHub Logo" class="github_logo">
+        </a>
+        <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'img/twitter-128.png' %}" alt="Twitter Logo" class="twitter_logo">
+        </a>
+    </footer>
+</body>
+</html>

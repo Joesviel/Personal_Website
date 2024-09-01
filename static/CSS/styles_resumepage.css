@@ -1,0 +1,39 @@
+#ShortDescription {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    padding: 0; /* Remove padding */
+}
+
+.ImgHolder {
+    display: flex;
+    flex-direction: column; /* Stack the header and image vertically */
+    align-items: flex-start; /* Align items to the left */
+    margin-right: 10px; /* Small space between the image and text */
+}
+
+.InfoHolder {
+    flex: 1; /* Take up remaining space */
+}
+
+.InfoHolder h2 {
+    margin: 0; /* Remove margin */
+}
+
+#ResumeList {
+    background-color: beige;
+}
+
+#ContactInfo {
+    text-align: center;
+}
+
+#ContactInfoCelAndMail {
+    font-weight: bold;
+    text-align: center;
+}

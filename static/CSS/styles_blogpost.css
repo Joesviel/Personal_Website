@@ -1,0 +1,39 @@
+small {
+    padding-left: 20px;
+}
+
+.PostTitle {
+    padding-left: 20px;
+}
+
+.CommentTitle {
+    padding-left: 20px;
+}
+
+.PostBody {
+    padding-left: 20px;
+}
+
+.GoBackButton {
+    margin-left: 20px;
+}
+
+.PostBody #RepliesMarkerWrapper{
+    padding-left: 40px;
+}
+
+.comment-component {
+    /* Add some basic styling to the container */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+#like-button {
+    margin-left: 20px;
+}
+
+#like-button-no-auth {
+    margin-left: 20px;
+}

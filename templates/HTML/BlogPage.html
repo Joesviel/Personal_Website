@@ -1,0 +1,194 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Navigation Bar</title>
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/styles_blogpage.css' %}">
+  </head>
+  <body>
+    <header class="logo-header">
+      <div class="logo-container">
+        <a href="{% url 'landpage' %}">
+          <img src="{% static 'img/mococo_.png' %}" alt="Logo" class="logo">
+        </a>
+      </div>
+    </header>
+
+    <!-- Top Bar to navigate web -->
+    <div class="TopBar">
+      <ul id="TopBarList">
+        <li><a href="{% url 'landpage' %}">Me</a></li>
+        <li><a href="{% url 'blogpage' %}">Blog</a></li>
+        <li><a href="{% url 'resumepage' %}">Resume</a></li>
+        <li><a href="{% url 'aboutmepage' %}">About me</a></li>
+      </ul>
+    </div>
+
+    <!-- Main page content -->
+    <div class="wrapper">
+      <h1 class="BlogHeader">Blog</h1>
+
+      <button class="subscribe-btn">
+        <a href="{% url 'subscribeblog' %}">
+          Subscribe
+        </a>
+      </button>
+      <hr>
+
+      <div class="select-container">
+        <select id="posts-per-page">
+          <option value="5">5 posts per page</option>
+          <option value="10" selected>10 posts per page</option>
+          <option value="15">15 posts per page</option>
+        </select>
+
+        <select id="sort-options">
+          <option value="">Select sort order</option>
+          <option value="date">Date</option>
+          <option value="favorites">Favorites</option>
+        </select>
+
+        <input type="text" id="search-bar" placeholder="Search by title...">
+      </div>
+      <hr>
+
+      <table class="PostsTable" id="main-table">
+        <thead>
+          <tr class="UpperPostTable">
+            <th>Title</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th>Favorites</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in object_list %}
+            <tr class="post-row">
+              <td> <a href="{% url 'blogpost' post.pk %}"> {{ post.title }}</a> </td>
+              <td>{{ post.author }}</td>
+              <td>{{ post.date }}</td>
+              <td>{{ post.favorites }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <hr>
+
+      <h1 class="BlogHeader">All Posts</h1>
+      <table class="PostsTable" id="all-posts-table">
+        <thead>
+          <tr class="UpperPostTable">
+            <th>Title</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th>Favorites</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in object_list %}
+            <tr class="post-row">
+              <td> <a href="{% url 'blogpost' post.pk %}"> {{ post.title }}</a> </td>
+              <td>{{ post.author }}</td>
+              <td>{{ post.date }}</td>
+              <td>{{ post.favorites }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Page footer -->
+    <footer>
+      <a href="https://www.linkedin.com/in/joseph-núñez-solano-257623241" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/linkedin-128.png' %}" alt="LinkedIn Logo" class="linkedin_logo">
+      </a>
+      <a href="https://github.com/Joesviel" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/github-8-128.png' %}" alt="GitHub Logo" class="github_logo">
+      </a>
+      <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/twitter-128.png' %}" alt="Twitter Logo" class="twitter_logo">
+      </a>
+    </footer>
+
+    <!-- Shows either 5, 10 or 15 posts -->
+    <script>
+      const postsPerPageSelect = document.getElementById('posts-per-page');
+      const mainTable = document.getElementById('main-table');
+      const mainPostRows = mainTable.querySelectorAll('.post-row');
+
+      postsPerPageSelect.addEventListener('change', (e) => {
+        const numPostsToShow = parseInt(e.target.value);
+        mainPostRows.forEach((row, index) => {
+          if (index >= numPostsToShow) {
+            row.style.display = 'none';
+          } else {
+            row.style.display = 'table-row';
+          }
+        });
+      });
+
+      // Sort posts by favorites or date
+      document.addEventListener("DOMContentLoaded", function() {
+          const mainTable = document.getElementById('main-table');
+
+          function sortTable(columnIndex, isNumeric, isDate) {
+              const rows = Array.from(mainTable.querySelectorAll("tr.post-row"));
+              const direction = mainTable.dataset.sortDirection === "asc" ? "desc" : "asc";
+
+              rows.sort((a, b) => {
+                  let valA = a.cells[columnIndex].innerText;
+                  let valB = b.cells[columnIndex].innerText;
+
+                  if (isDate) {
+                      valA = new Date(valA);
+                      valB = new Date(valB);
+                  } else if (isNumeric) {
+                      valA = parseFloat(valA);
+                      valB = parseFloat(valB);
+                  }
+
+                  if (direction === "asc") {
+                      return valA > valB ? 1 : -1;
+                  } else {
+                      return valA < valB ? 1 : -1;
+                  }
+              });
+
+              // Append sorted rows to the table
+              const tbody = mainTable.querySelector("tbody");
+              rows.forEach(row => tbody.appendChild(row));
+
+              // Update sort direction
+              mainTable.dataset.sortDirection = direction;
+          }
+
+          document.getElementById("sort-options").addEventListener("change", function() {
+              const value = this.value;
+              if (value === "date") {
+                  sortTable(2, false, true);
+              } else if (value === "favorites") {
+                  sortTable(3, true, false);
+              }
+          });
+      });
+
+      // Filter posts by title
+      const searchBar = document.getElementById('search-bar');
+      searchBar.addEventListener('input', function() {
+        const searchText = searchBar.value.toLowerCase();
+        mainPostRows.forEach(row => {
+          const title = row.cells[0].innerText.toLowerCase();
+          if (title.includes(searchText)) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Navigation Bar</title>
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/styles_landpage.css' %}">
+  </head>
+  <body>
+    <!-- Logo header and green block -->
+    <header class="logo-header">
+      <div class="logo-container">
+        <a href={% url 'landpage' %}>
+          <img src="{% static 'img/mococo_.png' %}" alt="Logo" class="logo">
+        </a>
+      </div>
+    </header>
+
+    <!-- Top Bar to navigate web -->
+    <div class="TopBar">
+      <ul id="TopBarList">
+          <li><a href={% url 'landpage' %}>Me</a></li>
+          <li><a href={% url 'blogpage' %}>Blog</a></li>
+          <li><a href={% url 'resumepage' %}>Resume</a></li>
+          <li><a href={% url 'aboutmepage' %}>About me</a></li>
+      </ul>
+    </div>
+
+    <!-- Main page content -->
+    <div class="LoggedUserMessage">
+      {% if user.is_authenticated %}
+        <hr>
+        <p> You are signed in as {{user.email}} </p><br>
+        <a href="logout">Logout</a>
+        <hr>
+      {% else %}
+        <hr>
+        <a href="{% url 'googlelogin' %}"> You can sign in with Google!!! </a><br>
+        <p> If you want to, I mean... </p>
+        <hr>
+      {% endif %}
+    </div>
+
+    <div class="wrapper">
+      <div class="content">
+          <img src="{% static 'img/Bentley.png' %}" alt="Totally me" class="TotallyMe">
+      </div>
+      <div class="textwrapper">
+          <h1 class="BigHeader">Joseph Núñez Solano</h1>
+          <p class="ShortDescription">
+            A Software Engineering student that really should touch grass.<br>
+            God's strongest End-User License Agreement disrespecter.
+          </p>
+          <p class="LongDescription">
+            Something Something I gotta fill this.
+          </p>
+      </div>
+    </div>
+
+    <div class="AreasOfInterest">
+      <h1 class="BigHeader">Areas of Interest</h1>
+      <p class="LongDescription">
+        I am passionate in the areas of security, software and hardware design,
+        particularly, the understanding of complex systems through reverse
+        engineering.<br>
+        I like to study retro hardware and software systems, mostly videogame
+        consoles and heavily modded videogames.<br>
+        Recently, I took an interest in Natural Lenguage Processing and Lenguage
+        models such as GPT and similars.<br>
+        Outside of my area of study, I've always had a deep interest in history
+        and anthropology as disciplines and I often take much of my free time
+        reading about them.
+      </p>
+    </div>
+
+    <div class="MasteredTechnologies">
+      <h1 class="BigHeader" Id="right">Mastered Technologies</h1>
+      <p class="LongDescription">
+        I am familiar with software development in various object-oriented lenguages
+        such as C, C++, C#, Python and Java.<br>
+        Uhhh... I know how to read and write both in assembly and a little of machine.
+        I can interpretate re-assembled code.<br>
+        I have an Nvidia Certificade on C++/Cuda library.
+      </p>
+    </div>
+
+    <div class="PersonalProject1">
+      <h1 id="LegoServer">Lego Pieces with Client-Server Model.</h1>
+
+      <p id="TextoPP1">
+        An application that retrieves the lego Pieces needed to create an
+        specific animal figure.<br>
+        Made following an strict protocol. The socket and other objects were
+        made from scratch.
+      </p>
+
+      <h1 id="SeePP1"><a href="http://www.google.com" target="_blank">See</a></h1>
+    </div>
+
+    <!-- Page footer -->
+    <footer>
+      <a href="https://www.linkedin.com/in/joseph-núñez-solano-257623241" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/linkedin-128.png' %}" alt="LinkedIn Logo" class="linkedin_logo">
+      </a>
+      <a href="https://github.com/Joesviel" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/github-8-128.png' %}" alt="GitHub Logo" class="github_logo">
+      </a>
+      <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/twitter-128.png' %}" alt="Twitter Logo" class="twitter_logo">
+      </a>
+    </footer>
+  </body>
+</html>

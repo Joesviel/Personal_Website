@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Navigation Bar</title>
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/styles_aboutmepage.css' %}">
+  </head>
+  <body>
+    <header class="logo-header">
+      <div class="logo-container">
+        <a href={% url 'landpage' %}>
+          <img src="{% static 'img/mococo_.png' %}" alt="Logo" class="logo">
+        </a>
+      </div>
+    </header>
+
+    <!-- Top Bar to navigate web -->
+    <div class="TopBar">
+      <ul id="TopBarList">
+          <li><a href={% url 'landpage' %}>Me</a></li>
+          <li><a href={% url 'blogpage' %}>Blog</a></li>
+          <li><a href={% url 'resumepage' %}>Resume</a></li>
+          <li><a href={% url 'aboutmepage' %}>About me</a></li>
+      </ul>
+    </div>
+
+    <!-- Main page content -->
+    <h1 id="AMHeader1">About Me!!!</h1>
+    <div class="wrapper">
+      <!-- I LIKE ONE -->
+      <div class="ILikeOne">
+        <div class="ILikeOneImg">
+          <img src="{% static 'img/ILikeOne.jpg' %}" alt="Totally me" class="TotallyMe">
+        </div>
+        <div class="ILikeOneText">
+          <h1 id="ILikeOneTextTittle">
+            I like this.
+          </h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis
+            purus at metus ultricies eleifend ut vitae purus. Vivamus tristique,
+            diam eu elementum gravida, erat tellus porttitor ex, quis bibendum
+            lacus augue eu libero. Cras lorem massa, efficitur a dapibus vitae,
+            iaculis ut justo. Aliquam rutrum mi ut lacus vulputate faucibus.
+            Maecenas sodales felis in orci aliquet iaculis. Nulla facilisi. Nam
+            vel arcu arcu. Aenean diam magna, elementum id scelerisque
+            consequat, tempus at nisi. Quisque convallis molestie arcu. Ut nec
+            justo neque. Maecenas consequat metus in sapien ornare, quis
+            malesuada purus bibendum. Class aptent taciti sociosqu ad litora
+            torquent per conubia nostra, per inceptos himenaeos.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ILikeTwoHolder">
+      <!-- I LIKE ONE -->
+      <div class="ILikeTwo">
+        <div class="ILikeTwoImg">
+          <img src="{% static 'img/ILikeTwo.jpg' %}" alt="IL2Img" class="IL2Img">
+        </div>
+        <div class="ILikeTwoText">
+          <h1 id="ILikeTwoTextTittle">
+            I like this.
+          </h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis
+            purus at metus ultricies eleifend ut vitae purus. Vivamus tristique,
+            diam eu elementum gravida, erat tellus porttitor ex, quis bibendum
+            lacus augue eu libero. Cras lorem massa, efficitur a dapibus vitae,
+            iaculis ut justo. Aliquam rutrum mi ut lacus vulputate faucibus.
+            Maecenas sodales felis in orci aliquet iaculis. Nulla facilisi. Nam
+            vel arcu arcu. Aenean diam magna, elementum id scelerisque
+            consequat, tempus at nisi. Quisque convallis molestie arcu. Ut nec
+            justo neque. Maecenas consequat metus in sapien ornare, quis
+            malesuada purus bibendum. Class aptent taciti sociosqu ad litora
+            torquent per conubia nostra, per inceptos himenaeos.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page footer -->
+    <footer>
+      <a href="https://www.linkedin.com/in/joseph-núñez-solano-257623241" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/linkedin-128.png' %}" alt="LinkedIn Logo" class="linkedin_logo">
+      </a>
+      <a href="https://github.com/Joesviel" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/github-8-128.png' %}" alt="GitHub Logo" class="github_logo">
+      </a>
+      <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/twitter-128.png' %}" alt="Twitter Logo" class="twitter_logo">
+      </a>
+    </footer>
+  </body>
+</html>

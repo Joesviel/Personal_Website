@@ -1,0 +1,52 @@
+#AMHeader1 {
+    text-align: center;
+}
+
+#ILikeOneTextTittle {
+    font-weight: bold;
+}
+
+#ILikeTwoTextTittle {
+    text-align: right;
+    font-weight: bold;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    padding: 0; /* Remove padding */
+}
+
+.ILikeOne {
+    display: flex;
+    align-items: center; /* Center items vertically */
+}
+
+.ILikeOneImg {
+    display: flex;
+    flex-direction: column; /* Stack the header and image vertically */
+    align-items: flex-start; /* Align items to the left */
+    margin-right: 10px; /* Small space between the image and text */
+}
+
+.ILikeOneText {
+    flex: 1; /* Take up remaining space */
+}
+
+.InfoHolder h2 {
+    margin: 0; /* Remove margin */
+}
+
+.IL2Img {
+    padding-right: 20px;
+    margin: 0;
+    margin-bottom: 40px;
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    width: 120px;
+    min-height: 120px;
+    max-height: auto;
+    float: right;
+    margin: 3px;
+}

@@ -1,0 +1,251 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Navigation Bar</title>
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/styles_blogpost.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <header class="logo-header">
+      <div class="logo-container">
+        <a href={% url 'landpage' %}>
+          <img src="{% static 'img/mococo_.png' %}" alt="Logo" class="logo">
+        </a>
+      </div>
+    </header>
+
+    <!-- Top Bar to navigate web -->
+    <div class="TopBar">
+      <ul id="TopBarList">
+          <li><a href={% url 'landpage' %}>Me</a></li>
+          <li><a href={% url 'blogpage' %}>Blog</a></li>
+          <li><a href={% url 'resumepage' %}>Resume</a></li>
+          <li><a href={% url 'aboutmepage' %}>About me</a></li>
+      </ul>
+    </div>
+
+    <!-- Main page content -->
+    <div class="wrapper">
+      <!-- Post details -->
+      <h1 class="PostTitle"> {{ post.title }} </h1>
+      <small> By: {{ post.author }} </small><br/>
+      <small> Date: {{ post.date }} </small><br/>
+      <small> Favorites: <span id="favorites-count">{{ post.favorites }}</span> </small><br/>
+      {% if user.is_authenticated %}
+        <button id="like-button" data-post-id="{{ post.pk }}">Like</button>
+      {% else %}
+        <button id="like-button-no-auth">Like</button>
+      {% endif %}
+
+      <!-- Error message for unauthenticated like attempt -->
+      <div id="error-message" style="color: red;"></div>
+      
+      <hr>
+
+      <!-- Post Body -->
+      <div class="PostBody">
+        {{ post.body }}
+      </div>
+      <hr>
+      
+      <!-- Go back button -->
+      <button type="button" class="GoBackButton">
+        <a href={% url 'blogpage' %}>
+          Go Back
+        </a>
+      </button>
+      <hr>
+
+      <!-- Comments -->
+      <h1 class="PostTitle"> Comments </h1>
+      <div class="PostBody">
+        {% if not post.comments.all %}
+          No Comments yet...
+        {% else %}
+          <!-- Individual comment -->
+          {% for comment in post.comments.all %}
+            <div class="comment" data-comment-id="{{ comment.pk }}">
+              <strong>
+                {{ comment.name }}
+                
+                <!-- If this comment belongs to the user, it adds a (You) alongside the name. -->
+                {% if comment.user == user %}
+                  (You)
+                {% endif %}
+
+                - {{ comment.date }} -
+                Likes: <span id="comment-likes-count-{{ comment.pk }}">{{ comment.likes }}</span>
+              </strong>
+              <br/>
+              {{ comment.body }}
+              <br/>
+              {% if user.is_authenticated %}
+                <button class="like-button" data-comment-id="{{ comment.pk }}">Like</button>
+              {% else %}
+                <button class="like-button-no-auth">Like</button>
+              {% endif %}
+
+
+                <!-- Delete Button comment -->
+              {% if user.is_authenticated %}
+                <!-- If user is a mod/admin -->
+                {% if perms.personal.delete_comment %}
+                  <button class="delete-button" data-comment-id="{{ comment.pk }}">Delete</button>
+                <!-- If user is a blog subscriber -->
+                {% elif comment.user == user %}
+                  <button class="delete-button" data-comment-id="{{ comment.pk }}">Delete</button>
+                {% else %}
+                  <button class="delete-button-no-auth-perm">Delete</button>
+                {% endif %}
+              {% else %}
+                <button class="delete-button-no-auth">Delete</button>
+              {% endif %}
+              <br/>
+
+              <!-- Replies to comment -->
+              {% if comment.replies.all %}
+                <span id="RepliesMarkerWrapper">
+                  <strong>Replies:</strong>
+                  <br/>
+                </span>
+                  {% for reply in comment.replies.all %}
+                    <div class="reply" data-comment-id="{{ reply.pk }}">
+                      <span id="RepliesMarkerWrapper">
+                        <strong id="replycolor" style="color: green;">
+                          {{ reply.name }} - {{ reply.date }} -
+                          Likes: <span id="reply-likes-count-{{ reply.pk }}">{{ reply.likes }}</span><br/>
+                        </strong>
+                      </span>
+                      <span id="RepliesMarkerWrapper">
+                        {{ reply.body }}
+                      </span>
+                      <br/>
+                      {% if user.is_authenticated %}
+                        <button class="like-button" data-comment-id="{{ reply.pk }}">Like</button>
+                      {% else %}
+                        <button class="like-button-no-auth">Like</button>
+                      {% endif %}
+
+                      <!-- Replies can only be deleted from the admin panel -->
+                      <br/>
+
+                      <div id="error-message-comment" style="color: red;"></div>
+                      <div id="error-message-delete" style="color: red;"></div>
+                    </div>
+                  {% endfor %}
+              {% endif %}
+              <hr>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="comment-component">
+      <h2>Post a comment.</h2>
+
+      {% if user.is_authenticated %}
+        <button id="post-button">
+          <a href="{% url 'postcomment' post.pk %}">
+            Add comment
+          </a>
+        </button>
+      {% else %}
+        <a href="{% url 'googlelogin' %}"> You have to sign up to post a comment. </a>
+      {% endif %}
+    </div>
+
+    <!-- Page footer -->
+    <footer>
+      <a href="https://www.linkedin.com/in/joseph-núñez-solano-257623241" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/linkedin-128.png' %}" alt="LinkedIn Logo" class="linkedin_logo">
+      </a>
+      <a href="https://github.com/Joesviel" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/github-8-128.png' %}" alt="GitHub Logo" class="github_logo">
+      </a>
+      <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/twitter-128.png' %}" alt="Twitter Logo" class="twitter_logo">
+      </a>
+    </footer>
+
+    <!-- Increment favorites and likes -->
+    <script>
+      $(document).ready(function(){
+        // Like button for post
+        $('#like-button').click(function(){
+            var postId = $(this).data('post-id');
+            $.ajax({
+                url: '/blogpost/' + postId + '/incrementfavorites/',
+                type: 'POST',
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(response){
+                    $('#favorites-count').text(response.favorites);
+                }
+            });
+        });
+    
+        $('#like-button-no-auth').click(function(){
+            $('#error-message').text("You can't like posts unless you are authenticated. Hint: Look at the bottom of this page!");
+        });
+    
+        // Like button for comments and replies
+        $('.like-button').click(function(){
+            var commentId = $(this).data('comment-id');
+            var postId = {{ post.pk }};
+            $.ajax({
+                url: '/blogpost/' + postId + '/incrementlikes/',
+                type: 'POST',
+                data: {
+                    comment_id: commentId,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(response){
+                    $('#comment-likes-count-' + commentId).text(response.likes);
+                }
+            });
+        });
+    
+        $('.like-button-no-auth').click(function(){
+            $('#error-message-comment').text("You can't like comments unless you are authenticated. Hint: Look at the bottom of this page!");
+        });
+    
+        // Delete button for comments and replies
+        $('.delete-button').click(function(){
+            var commentId = $(this).data('comment-id');
+            var postId = {{ post.pk }};
+            $.ajax({
+                url: '/blogpost/' + postId + '/deletecomment/',
+                type: 'POST',
+                data: {
+                    comment_id: commentId,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(response){
+                    if (response.success) {
+                        // Remove the comment or reply from the DOM
+                        $('div[data-comment-id="' + commentId + '"]').remove();
+                    } else {
+                        alert(response.error);
+                    }
+                }
+            });
+        });
+    
+        $('.delete-button-no-auth').click(function(){
+            $('#error-message-delete').text("You can't delete comments unless you are authenticated. Hint: Look at the bottom of this page!");
+        });
+
+        $('.delete-button-no-auth-perm').click(function(){
+          $('#error-message-delete').text("You don't have the authorization to delete this comment.");
+        });
+    });
+    </script>
+  </body>
+</html>

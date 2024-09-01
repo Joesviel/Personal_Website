@@ -1,0 +1,41 @@
+.UpperPostTable {
+    background-color: #4CAF50;
+
+}
+
+tr {
+    background-color: white;
+}
+
+.BlogHeader {
+    text-align: center;
+}
+
+.PostsTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.select-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+}
+
+.subscribe-btn {
+    background-color: #4CAF50; /* Green background */
+    color: #ffffff; /* White text */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Add some padding */
+    font-size: 16px; /* Increase font size */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+  
+  .subscribe-btn:hover {
+    background-color: #3e8e41; /* Darker green on hover */
+  }
+  
+  /* Center the button horizontally */
+  .subscribe-btn {
+    display: block;
+    margin: 0 auto;
+  }

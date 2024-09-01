@@ -1,0 +1,24 @@
+.comment-component {
+    /* Add some basic styling to the container */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #poster-name {
+    /* Make the poster name input shorter */
+    width: 150px;
+    height: 25px;
+    font-size: 14px;
+    padding: 5px;
+  }
+  
+  #comment-body {
+    /* Make the comment body textarea wider and taller */
+    width: 300px;
+    height: 100px;
+    font-size: 14px;
+    padding: 5px;
+    resize: vertical; /* Allow the textarea to be resized vertically */
+  }

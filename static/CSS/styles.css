@@ -1,0 +1,100 @@
+html, body {
+    height: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background-color: beige;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    margin: 0;
+    margin-bottom: 40px;
+    flex: 1;
+}
+
+.logo-header {
+    
+    background-color: #4CAF50; /* Green background */
+    padding: 10px;
+}
+
+.logo-container .logo {
+    max-width: 100px; /* Adjust the size as needed */
+    height: auto;
+}
+
+footer {
+    background-color: black;
+    width: 100%;
+    padding: 20px 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer img {
+    height: 70px;
+    margin: 0 10px;
+}
+
+.wrapper img {
+    height: 200px;
+}
+
+#TopBarList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+  }
+  
+li a {
+    font-family: sans-serif;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    padding: 8px;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+.active {
+    background-color: #04AA6D;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+h1 p {
+    font-family: 'Roboto', sans-serif;
+}
+
+.TotallyMe {
+    padding-left: 20px;
+}
+
+.MasteredTechnologies {
+    text-align: right;
+    padding: 20px; /* Optional: Add padding if needed */
+}
+
+#right {
+    text-align: right;
+}
+
+.LongDescription {
+    margin: 0;
+}

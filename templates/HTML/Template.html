@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Navigation Bar</title>
+    <link rel="stylesheet" href="../CSS/styles.css">
+  </head>
+  <body>
+    <header class="logo-header">
+      <div class="logo-container">
+        <a href={% url 'landpage' %}>
+          <img src="{% static 'img/mococo_.png' %}" alt="Logo" class="logo">
+        </a>
+      </div>
+    </header>
+
+    <!-- Top Bar to navigate web -->
+    <div class="TopBar">
+      <ul id="TopBarList">
+          <li><a href="#Me">Me</a></li>
+          <li><a href="#Blog">Blog</a></li>
+          <li><a href="#Resume">Resume</a></li>
+          <li><a href="#About me">About me</a></li>
+      </ul>
+    </div>
+
+    <!-- Main page content -->
+    <div class="wrapper">
+      <h1>Example</h1>
+
+    
+    </div>
+
+    <!-- Page footer -->
+    <footer>
+      <a href="https://www.linkedin.com/in/joseph-núñez-solano-257623241" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/linkedin-128.png' %}" alt="LinkedIn Logo" class="linkedin_logo">
+      </a>
+      <a href="https://github.com/Joesviel" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/github-8-128.png' %}" alt="GitHub Logo" class="github_logo">
+      </a>
+      <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+        <img src="{% static 'img/twitter-128.png' %}" alt="Twitter Logo" class="twitter_logo">
+      </a>
+    </footer>
+  </body>
+</html>

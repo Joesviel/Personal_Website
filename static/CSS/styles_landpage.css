@@ -1,0 +1,56 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    padding: 0; /* Remove padding */
+}
+
+.LoggedUserMessage {
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column; /* Stack the header and image vertically */
+    align-items: flex-start; /* Align items to the left */
+    margin-right: 10px; /* Small space between the image and text */
+}
+
+.BigHeader {
+    margin: 0 0 10px 0; /* Adjust margin as needed */
+    text-align: left; /* Align the header text to the left */
+}
+
+.textwrapper {
+    flex: 1; /* Take up remaining space */
+}
+
+.textwrapper h1 {
+    margin: 0; /* Remove margin */
+}
+
+.ShortDescription {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.PersonalProject1 {
+    background-color: gray;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    align-items: center;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+
+#TextoPP1 {
+    margin: 0 0 10px 0; /* Adjust margin as needed */
+}
